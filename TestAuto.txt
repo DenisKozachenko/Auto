@@ -1,0 +1,18 @@
+public class TestAuto {
+
+    @Test
+    public void testAuto() throws IOException {
+        WebDriver dr = new ChromeDriver();
+        dr.get("http://the-internet.herokuapp.com/");
+        dr.findElement(By.xpath("//div//li[18]/a")).click();
+        dr.findElement(By.id("username")).sendKeys("username");
+        dr.findElement(By.id("password")).sendKeys("password");
+        dr.findElement(By.className("radius")).click();
+
+
+            File screen = ((TakesScreenshot)dr).getScreenshotAs(OutputType.FILE);
+            String path = "./target/Shot.png" + screen.getName();
+            FileUtils.copyFile(screen, new File(path));
+        }
+
+}
